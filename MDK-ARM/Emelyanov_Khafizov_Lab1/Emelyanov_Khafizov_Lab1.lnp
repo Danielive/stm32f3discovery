@@ -22,7 +22,7 @@
 "emelyanov_khafizov_lab1\asciilib.o"
 "emelyanov_khafizov_lab1\hzlib.o"
 "emelyanov_khafizov_lab1\lcd.o"
---library_type=microlib --strict --scatter "Emelyanov_Khafizov_Lab1\Emelyanov_Khafizov_Lab1.sct"
+--library_type=microlib --scatter "Emelyanov_Khafizov_Lab1\Emelyanov_Khafizov_Lab1.sct"
 --diag_suppress=L6329 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "Emelyanov_Khafizov_Lab1.map" -o Emelyanov_Khafizov_Lab1\Emelyanov_Khafizov_Lab1.axf

@@ -31,3 +31,5 @@ emelyanov_khafizov_lab1\main.o: ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_ha
 emelyanov_khafizov_lab1\main.o: ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h
 emelyanov_khafizov_lab1\main.o: ../Src/LCD.h
 emelyanov_khafizov_lab1\main.o: C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\Bin\..\include\math.h
+emelyanov_khafizov_lab1\main.o: ../Src/AsciiLib.h
+emelyanov_khafizov_lab1\main.o: C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\Bin\..\include\string.h

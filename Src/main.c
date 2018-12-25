@@ -39,6 +39,9 @@
 #include "LCD.h"
 #include <stdio.h>
 
+
+#include "AsciiLib.h"
+
 #ifdef __GNUC__
 /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
      set to 'Yes') calls __io_putchar() */
@@ -80,9 +83,10 @@ void Delay(uint32_t nCount)
 
 
 *******************************************************************************/
+
+
 int main(void)
 {
-
     HAL_Init();
 
     /* Configure the system clock */
@@ -90,7 +94,7 @@ int main(void)
 
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
-
+	
     LCD_Configuration();
 
     //Delay(0xfffff);
@@ -99,17 +103,27 @@ int main(void)
     LCD_Initializtion();
     /* Infinite loop */
 
-    while (1) {
+    //while (1) {
         LCD_Clear(Yellow);
+			
+//			LCD_DrawLine(150, 100, 150, 200, Red);
 
-        for (int i = 0; i < 198; i++) {
-						GUI_Text(100, 54, "Hello", White, Red);
-						GUI_Text(i, 104, "Georgij", White, Yellow);
-						//GUI_Text(i, 152, "Daniel", Blue, Red);
-						//GUI_Text(i, 204, "Albert", Black, Green);
-            HAL_Delay(1);
-        }
-    }
+//			LCD_DrawLine(50, 100, 50, 200, Red);
+//			LCD_DrawLine(150, 100, 50, 100, Red);
+//			LCD_DrawLine(150, 200, 50, 200, Red);
+//			
+//			LCD_DrawLine(100, 100, 100, 200, Red);
+//			LCD_DrawLine(150, 150, 50, 150, Red);
+//			
+//			
+//			
+//			LCD_Clear2(Blue, 50, 100, 100, 150);
+
+						
+						GUI_Text(50, 104, convert("АБВГДЕЖЗИЙКЛМН"), Blue, Yellow);
+						GUI_Text(50, 152, convert("ОПРСТУФХЦЧШЩЪЫЬЭЮЯ"), Red, Yellow);
+						GUI_Text(50, 204, convert("абвгдежзийклмноп"), Black, Yellow);
+						GUI_Text(50, 234, convert("рстуфхцчшщъыьэюя"), Black, Yellow);
 }
 
 /*******************************************************************************
@@ -130,7 +144,7 @@ int main(void)
 * Attention		 : None
 *******************************************************************************/
 void LCD_Configuration(void)
-{
+ {
     GPIO_InitTypeDef GPIO_InitStructure;
 
     __HAL_RCC_GPIOA_CLK_ENABLE();
@@ -138,48 +152,50 @@ void LCD_Configuration(void)
     __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOD_CLK_ENABLE();
 
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, GPIO_PIN_SET);
-
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7, GPIO_PIN_SET);
+	
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOB, GPIO_PIN_10, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_11, GPIO_PIN_SET);
 
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_8, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_9, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_10, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOC, GPIO_PIN_11, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET);
 
+		HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_1, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_2, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_3, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_4, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_5, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_6, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_7, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_8, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_9, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_10, GPIO_PIN_SET);
     HAL_GPIO_WritePin(GPIOD, GPIO_PIN_11, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_13, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_15, GPIO_PIN_SET);
 
-    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_8, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_9, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_10, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOE, GPIO_PIN_11, GPIO_PIN_SET);
-
-    HAL_GPIO_WritePin(GPIOF, GPIO_PIN_8, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOF, GPIO_PIN_9, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOF, GPIO_PIN_10, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOF, GPIO_PIN_11, GPIO_PIN_SET);
-
-    GPIO_InitStructure.Pin = GPIO_PIN_All; // GPIO_Pin_All;
     GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
     GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP; // GPIO_Mode_OUT;
     GPIO_InitStructure.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
-
+		
+    GPIO_InitStructure.Pin = GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7; // GPIO_Pin_All;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStructure);
-
+		
+    GPIO_InitStructure.Pin = GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 ; // GPIO_Pin_All;
     HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
-
+		
+    GPIO_InitStructure.Pin = GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_13; // GPIO_Pin_All;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
-
+		
+    GPIO_InitStructure.Pin = GPIO_PIN_All; // GPIO_Pin_All;
     HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
 }
 

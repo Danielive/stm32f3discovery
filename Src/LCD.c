@@ -290,7 +290,7 @@ void LCD_Initializtion(void)
 	uint16_t DeviceCode;
 
 
-  // �ı�ָ���ܽŵ�ӳ�� GPIO_Remap_SWJ_JTAGDisable ��JTAG-DP ���� + SW-DP ʹ��
+  // 改变指定管脚的映射 GPIO_Remap_SWJ_JTAGDisable ，JTAG-DP 禁用 + SW-DP 使能
   // while(1)
   // {
   //GPIO_ResetBits(GPIOC, GPIO_PIN_11);		/* LCD_RESET */
@@ -747,12 +747,12 @@ void LCD_Initializtion(void)
 		LCD_WriteReg(0x0061,0x0003);	  /* Driver Output Control */
 		LCD_WriteReg(0x006A,0x0000);	  /* Vertical Scroll Control */
 		
-		LCD_WriteReg(0x0080,0x0000);	  /* Display Position �C Partial Display 1 */
-		LCD_WriteReg(0x0081,0x0000);	  /* RAM Address Start �C Partial Display 1 */
+		LCD_WriteReg(0x0080,0x0000);	  /* Display Position – Partial Display 1 */
+		LCD_WriteReg(0x0081,0x0000);	  /* RAM Address Start – Partial Display 1 */
 		LCD_WriteReg(0x0082,0x0000);	  /* RAM address End - Partial Display 1 */
-		LCD_WriteReg(0x0083,0x0000);	  /* Display Position �C Partial Display 2 */
-		LCD_WriteReg(0x0084,0x0000);	  /* RAM Address Start �C Partial Display 2 */
-		LCD_WriteReg(0x0085,0x0000);	  /* RAM address End �C Partail Display2 */
+		LCD_WriteReg(0x0083,0x0000);	  /* Display Position – Partial Display 2 */
+		LCD_WriteReg(0x0084,0x0000);	  /* RAM Address Start – Partial Display 2 */
+		LCD_WriteReg(0x0085,0x0000);	  /* RAM address End – Partail Display2 */
 		LCD_WriteReg(0x0090,0x0013);	  /* Frame Cycle Control */
 		LCD_WriteReg(0x0092,0x0000); 	  /* Panel Interface Control 2 */
 		LCD_WriteReg(0x0093,0x0003);	  /* Panel Interface control 3 */
@@ -1281,9 +1281,9 @@ void LCD_DrawLine( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1 , uint16_t
 * Return         : None
 * Attention		 : None
 *******************************************************************************/
-void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, uint16_t bkColor )
-{
-	uint16_t i, j;
+
+void PutChar( uint16_t Xpos, uint16_t Ypos, char ASCI, uint16_t charColor, uint16_t bkColor ) {
+		uint16_t i, j;
     uint8_t buffer[16], tmp_char;
     GetASCIICode(buffer,ASCI);
     for( i=0; i<16; i++ )
@@ -1315,12 +1315,14 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, uint8_t ASCI, uint16_t charColor, ui
 * Return         : None
 * Attention		 : None
 *******************************************************************************/
-void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_t bkColor)
-{
-    uint8_t TempChar;
-    do
-    {
-        TempChar = *str++;  
+
+void GUI_Text(uint16_t Xpos, uint16_t Ypos, char str[], uint16_t Color, uint16_t bkColor) {
+	    char TempChar;
+	
+	
+	for (int i = 0; i < strlen(str); i++) {
+
+        TempChar = str[i];  
         PutChar( Xpos, Ypos, TempChar, Color, bkColor );    
         if( Xpos < MAX_X - 8 )
         {
@@ -1335,9 +1337,232 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, uint8_t *str,uint16_t Color, uint16_
         {
             Xpos = 0;
             Ypos = 0;
-        }    
+        }
     }
-    while ( *str != 0 );
+}
+
+
+int isValueInAlphabet(char value) {
+	
+	const char *alphabet[] = {
+		
+		"А", 
+		"Б",
+		"В",
+		"Г",
+		"Д",
+		"Е",
+		"Ж",
+		"З",
+		"И",
+		"Й",
+		"К",
+		"Л",
+		"М",
+		"Н",
+		"О",
+		"П",
+		"Р",
+		"С",
+		"Т",
+		"У",
+		"Ф",
+		"Х",
+		"Ц",
+		"Ч",
+		"Ш",
+		"Щ",
+		"Ъ",
+		"Ы",
+		"Ь",
+		"Э",
+		"Ю",
+		"Я",
+		"а",
+		"б",
+		"в",
+		"г",
+		"д",
+		"е",
+		"ж",
+		"з",
+		"и",
+		"й",
+		"к",
+		"л",
+		"м",
+		"н",
+		"о",
+		"п",
+		"р",
+		"с",
+		"т",
+		"у",
+		"ф",
+		"х",
+		"ц",
+		"ч",
+		"ш",
+		"щ",
+		"ъ",
+		"ы",
+		"ь",
+		"э",
+		"ю",
+		"я"
+	};
+
+	if (value == alphabet[0][1]) {
+		return 95;
+	} else if (value == alphabet[1][1]) {
+		return 96;
+	} else if (value == alphabet[2][1]) {
+		return 97;
+	} else if (value == alphabet[3][1]) {
+		return 98;
+	} else if (value == alphabet[4][1]) {
+		return 99;
+	} else if (value == alphabet[5][1]) {
+		return 100;
+	} else if (value == alphabet[6][1]) {
+		return 101;
+	} else if (value == alphabet[7][1]) {
+		return 102;
+	} else if (value == alphabet[8][1]) {
+		return 103;
+	} else if (value == alphabet[9][1]) {
+		return 104;
+	} else if (value == alphabet[10][1]) {
+		return 105;
+	} else if (value == alphabet[11][1]) {
+		return 106;
+	} else if (value == alphabet[12][1]) {
+		return 107;
+	} else if (value == alphabet[13][1]) {
+		return 108;
+	} else if (value == alphabet[14][1]) {
+		return 109;
+	} else if (value == alphabet[15][1]) {
+		return 110;
+	} else if (value == alphabet[16][1]) {
+		return 111;
+	} else if (value == alphabet[17][1]) {
+		return 112;
+	} else if (value == alphabet[18][1]) {
+		return 113;
+	} else if (value == alphabet[19][1]) {
+		return 114;
+	} else if (value == alphabet[20][1]) {
+		return 115;
+	} else if (value == alphabet[21][1]) {
+		return 116;
+	} else if (value == alphabet[22][1]) {
+		return 117;
+	} else if (value == alphabet[23][1]) {
+		return 118;
+	} else if (value == alphabet[24][1]) {
+		return 119;
+	} else if (value == alphabet[25][1]) {
+		return 120;
+	} else if (value == alphabet[26][1]) {
+		return 121;
+	} else if (value == alphabet[27][1]) {
+		return 122;
+	} else if (value == alphabet[28][1]) {
+		return 123;
+	} else if (value == alphabet[29][1]) {
+		return 124;
+	} else if (value == alphabet[30][1]) {
+		return 125;
+	} else if (value == alphabet[31][1]) {
+		return 126;
+	} else if (value == alphabet[32][1]) {
+		return 127;
+	} else if (value == alphabet[33][1]) {
+		return 128;
+	} else if (value == alphabet[34][1]) {
+		return 129;
+	} else if (value == alphabet[35][1]) {
+		return 130;
+	} else if (value == alphabet[36][1]) {
+		return 131;
+	} else if (value == alphabet[37][1]) {
+		return 132;
+	}  else if (value == alphabet[38][1]) {
+		return 133;
+	} else if (value == alphabet[39][1]) {
+		return 134;
+	} else if (value == alphabet[40][1]) {
+		return 135;
+	} else if (value == alphabet[41][1]) {
+		return 136;
+	} else if (value == alphabet[42][1]) {
+		return 137;
+	} else if (value == alphabet[43][1]) {
+		return 138;
+	} else if (value == alphabet[44][1]) {
+		return 139;
+	} else if (value == alphabet[45][1]) {
+		return 140;
+	} else if (value == alphabet[46][1]) {
+		return 141;
+	} else if (value == alphabet[47][1]) {
+		return 142;
+	} else if (value == alphabet[48][1]) {
+		return 143;
+	} else if (value == alphabet[49][1]) {
+		return 144;
+	} else if (value == alphabet[50][1]) {
+		return 145;
+	} else if (value == alphabet[51][1]) {
+		return 146;
+	} else if (value == alphabet[52][1]) {
+		return 147;
+	} else if (value == alphabet[53][1]) {
+		return 148;
+	} else if (value == alphabet[54][1]) {
+		return 149;
+	} else if (value == alphabet[55][1]) {
+		return 150;
+	} else if (value == alphabet[56][1]) {
+		return 151;
+	}  else if (value == alphabet[57][1]) {
+		return 152;
+	}  else if (value == alphabet[58][1]) {
+		return 153;
+	}  else if (value == alphabet[59][1]) {
+		return 154;
+	}  else if (value == alphabet[60][1]) {
+		return 155;
+	}  else if (value == alphabet[61][1]) {
+		return 156;
+	}  else if (value == alphabet[62][1]) {
+		return 157;
+	}  else if (value == alphabet[63][1]) {
+		return 158;
+	}  
+	
+	else {
+		return 0;
+	}
+}
+
+char *convert(char* str) {
+	static char codes[100];
+
+	int count = 0;
+
+	for (int i=0; i < strlen(str); i++) {
+		
+		int code = isValueInAlphabet(str[i]);
+		
+		if (code != 0) {
+			codes[count] = 107+code;
+			count++;
+		}
+	}
+
+	return codes;
 }
 
 
