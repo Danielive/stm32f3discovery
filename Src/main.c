@@ -100,19 +100,10 @@ int main(void)
     HAL_Delay(100);
 
     LCD_Initializtion();
-        LCD_Clear(Yellow);
-
-						
-	GUI_Text(50, 34, convert("АБВГДЕЖЗИЙКЛМНОП"), Blue, Yellow);
-	GUI_Text(50, 64, convert("РСТУФХЦЧШЩЪЫЬЭЮЯ"), Red, Yellow);
-						//GUI_Text(50, 204, convert("абвгдежзийклмноп"), Black, Yellow);
-						//GUI_Text(50, 234, convert("р"), Black, Yellow);
-
-
-	//GUI_Text(50, 104, convert("ABCDEFGHIJKLM"), Black, Yellow);
-	//GUI_Text(50, 152, convert("NOPQRSTUVWXYZ"), Black, Yellow);
-	//GUI_Text(50, 204, convert("abcdefghijklm"), Black, Yellow);
-	//GUI_Text(50, 234, convert("nopqrstuvwxyz"), Black, Yellow);
+    LCD_Clear(Yellow);
+	
+	GUI_Text(50, 34, "TEXT", Blue, Yellow);
+	GUI_Text(50, 64, "ТЕКСТ", Red, Yellow);
 }
 
 /*******************************************************************************
