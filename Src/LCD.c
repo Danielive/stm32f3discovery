@@ -1317,8 +1317,8 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, char ASCI, uint16_t charColor, uint1
 *******************************************************************************/
 
 void GUI_Text(uint16_t Xpos, uint16_t Ypos, char str[], uint16_t Color, uint16_t bkColor) {
-	    char TempChar;
-	
+	str = convert(str);
+	char TempChar;
 	
 	for (int i = 0; i < strlen(str); i++) {
 
