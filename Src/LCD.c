@@ -1345,8 +1345,7 @@ void GUI_Text(uint16_t Xpos, uint16_t Ypos, char str[], uint16_t Color, uint16_t
 int isValueInAlphabet(char value) {
 	
 	const char *alphabet[] = {
-		
-		"А", 
+		"А", //1
 		"Б",
 		"В",
 		"Г",
@@ -1355,7 +1354,7 @@ int isValueInAlphabet(char value) {
 		"Ж",
 		"З",
 		"И",
-		"Й",
+		"Й",//10
 		"К",
 		"Л",
 		"М",
@@ -1365,7 +1364,7 @@ int isValueInAlphabet(char value) {
 		"Р",
 		"С",
 		"Т",
-		"У",
+		"У",//20
 		"Ф",
 		"Х",
 		"Ц",
@@ -1377,7 +1376,7 @@ int isValueInAlphabet(char value) {
 		"Ь",
 		"Э",
 		"Ю",
-		"Я",
+		"Я",//32
 		"а",
 		"б",
 		"в",
@@ -1385,7 +1384,7 @@ int isValueInAlphabet(char value) {
 		"д",
 		"е",
 		"ж",
-		"з",
+		"з",//40
 		"и",
 		"й",
 		"к",
@@ -1395,7 +1394,7 @@ int isValueInAlphabet(char value) {
 		"о",
 		"п",
 		"р",
-		"с",
+		"с",//50
 		"т",
 		"у",
 		"ф",
@@ -1409,7 +1408,7 @@ int isValueInAlphabet(char value) {
 		"ь",
 		"э",
 		"ю",
-		"я"
+		"я"//64
 	};
 
 	if (value == alphabet[0][1]) {
@@ -1520,7 +1519,7 @@ int isValueInAlphabet(char value) {
 		return 147;
 	} else if (value == alphabet[53][1]) {
 		return 148;
-	} else if (value == alphabet[54][1]) {
+	} else if (value == alphabet[54][0]) {
 		return 149;
 	} else if (value == alphabet[55][1]) {
 		return 150;
@@ -1547,18 +1546,31 @@ int isValueInAlphabet(char value) {
 	}
 }
 
+int isLatin(int code) {
+	if (code >= 65 && code <= 122) {
+		return code;
+	}
+	return 0;
+}
+
 char *convert(char* str) {
 	static char codes[100];
 
 	int count = 0;
 
 	for (int i=0; i < strlen(str); i++) {
+		int latinCode = isLatin(str[i]);
 		
-		int code = isValueInAlphabet(str[i]);
-		
-		if (code != 0) {
-			codes[count] = 107+code;
+		if (latinCode != 0) {
+			codes[count] = latinCode;
 			count++;
+		} else {
+			int code = isValueInAlphabet(str[i]);
+			
+			if (code != 0) {
+				codes[count] = 97+code;
+				count++;
+			}
 		}
 	}
 

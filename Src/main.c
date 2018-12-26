@@ -97,33 +97,22 @@ int main(void)
 	
     LCD_Configuration();
 
-    //Delay(0xfffff);
     HAL_Delay(100);
 
     LCD_Initializtion();
-    /* Infinite loop */
-
-    //while (1) {
         LCD_Clear(Yellow);
-			
-//			LCD_DrawLine(150, 100, 150, 200, Red);
-
-//			LCD_DrawLine(50, 100, 50, 200, Red);
-//			LCD_DrawLine(150, 100, 50, 100, Red);
-//			LCD_DrawLine(150, 200, 50, 200, Red);
-//			
-//			LCD_DrawLine(100, 100, 100, 200, Red);
-//			LCD_DrawLine(150, 150, 50, 150, Red);
-//			
-//			
-//			
-//			LCD_Clear2(Blue, 50, 100, 100, 150);
 
 						
-						GUI_Text(50, 104, convert("АБВГДЕЖЗИЙКЛМН"), Blue, Yellow);
-						GUI_Text(50, 152, convert("ОПРСТУФХЦЧШЩЪЫЬЭЮЯ"), Red, Yellow);
-						GUI_Text(50, 204, convert("абвгдежзийклмноп"), Black, Yellow);
-						GUI_Text(50, 234, convert("рстуфхцчшщъыьэюя"), Black, Yellow);
+	GUI_Text(50, 34, convert("АБВГДЕЖЗИЙКЛМНОП"), Blue, Yellow);
+	GUI_Text(50, 64, convert("РСТУФХЦЧШЩЪЫЬЭЮЯ"), Red, Yellow);
+						//GUI_Text(50, 204, convert("абвгдежзийклмноп"), Black, Yellow);
+						//GUI_Text(50, 234, convert("р"), Black, Yellow);
+
+
+	//GUI_Text(50, 104, convert("ABCDEFGHIJKLM"), Black, Yellow);
+	//GUI_Text(50, 152, convert("NOPQRSTUVWXYZ"), Black, Yellow);
+	//GUI_Text(50, 204, convert("abcdefghijklm"), Black, Yellow);
+	//GUI_Text(50, 234, convert("nopqrstuvwxyz"), Black, Yellow);
 }
 
 /*******************************************************************************

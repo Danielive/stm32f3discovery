@@ -435,7 +435,7 @@ I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h)(0x58B7EA9A)
 F (startup_stm32f303xc.s)(0x5C224881)(--cpu Cortex-M4.fp --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1"-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"--pd "__UVISION_VERSION SETA 525" --pd "_RTE_ SETA 1" --pd "STM32F303xC SETA 1"--list startup_stm32f303xc.lst --xref -o emelyanov_khafizov_lab1\startup_stm32f303xc.o --depend emelyanov_khafizov_lab1\startup_stm32f303xc.d)
-F (../Src/main.c)(0x5C227577)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\main.o --omf_browse emelyanov_khafizov_lab1\main.crf --depend emelyanov_khafizov_lab1\main.d)
+F (../Src/main.c)(0x5C236E5B)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\main.o --omf_browse emelyanov_khafizov_lab1\main.crf --depend emelyanov_khafizov_lab1\main.d)
 I (../Inc/main.h)(0x5A7AE29C)
 I (../Inc/gpio.h)(0x5A7AE296)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h)(0x58B7EA98)
@@ -465,7 +465,7 @@ I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h)(0x58B7EA9A)
-I (../Src/LCD.h)(0x5C227577)
+I (../Src/LCD.h)(0x5C23676D)
 I (C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\include\math.h)(0x599F137E)
 I (../Src/AsciiLib.h)(0x5C224348)
 I (C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\include\string.h)(0x599F137C)
@@ -558,7 +558,7 @@ I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h)(0x58B7EA9A)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h)(0x58B7EA9A)
-F (..\Src\AsciiLib.c)(0x5C2272E2)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\asciilib.o --omf_browse emelyanov_khafizov_lab1\asciilib.crf --depend emelyanov_khafizov_lab1\asciilib.d)
+F (..\Src\AsciiLib.c)(0x5C236657)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\asciilib.o --omf_browse emelyanov_khafizov_lab1\asciilib.crf --depend emelyanov_khafizov_lab1\asciilib.d)
 I (..\Src\AsciiLib.h)(0x5C224348)
 I (C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\include\string.h)(0x599F137C)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h)(0x58B7EA98)
@@ -592,8 +592,8 @@ I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h)(0x58B7EA9A)
 F (..\Src\HzLib.c)(0x5C20EF64)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\hzlib.o --omf_browse emelyanov_khafizov_lab1\hzlib.crf --depend emelyanov_khafizov_lab1\hzlib.d)
 I (..\Src\HzLib.h)(0x4E30C3EE)
 I (C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\include\string.h)(0x599F137C)
-F (..\Src\LCD.c)(0x5C227588)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\lcd.o --omf_browse emelyanov_khafizov_lab1\lcd.crf --depend emelyanov_khafizov_lab1\lcd.d)
-I (..\Src\LCD.h)(0x5C227577)
+F (..\Src\LCD.c)(0x5C236CE8)(-c --cpu Cortex-M4.fp -D__EVAL -D__MICROLIB -g -O3 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc -I ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I ../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I ../Drivers/CMSIS/Include --C99-I.\RTE\_Emelyanov_Khafizov_Lab1-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include"-I"C:\Program Files\STM32Kit\uVision5\ARM\PACK\Keil\STM32F3xx_DFP\2.1.0\Drivers\CMSIS\Device\ST\STM32F3xx\Include"-D__UVISION_VERSION="525" -D_RTE_ -DSTM32F303xC -DUSE_HAL_DRIVER -DSTM32F303xC-o emelyanov_khafizov_lab1\lcd.o --omf_browse emelyanov_khafizov_lab1\lcd.crf --depend emelyanov_khafizov_lab1\lcd.d)
+I (..\Src\LCD.h)(0x5C23676D)
 I (C:\Program Files\STM32Kit\uVision5\ARM\ARMCC\include\math.h)(0x599F137E)
 I (../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h)(0x58B7EA98)
 I (../Inc/stm32f3xx_hal_conf.h)(0x5A7AE29A)
