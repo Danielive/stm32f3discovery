@@ -103,32 +103,17 @@ uint16_t LCD_ReadData(void)
 	 PD.09(D9), PD.10(D10), PD.11(D11), PD.12(D12), PD.13(D13), PD.14(D14), PD.15(D15)   */
 
 
-// 		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;
-// 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-// 		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-// 		GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-// 		GPIO_Init(GPIOD, &GPIO_InitStructure);
-
-
 	GPIOD->PUPDR = 0x00000000;
 	GPIOD->MODER = 0x00000000;
 
 
-//     value = GPIO_ReadInputData(GPIOD);
-//     value = GPIO_ReadInputData(GPIOD);
-
    value = GPIOD->IDR;
    value = GPIOD->IDR;
 
-/*  
-    PE.00(D0), PE.01(D1), PE.02(D2), PE.03(D3), PE.04(D4), PE.05(D5), PE.06(D6), PE.07(D7), PE.08(D8)
-    PE.09(D9), PE.10(D10), PE.11(D11), PE.12(D12), PE.13(D13), PE.14(D14), PE.15(D15)   */
 
     GPIO_InitStructure.Pin = GPIO_PIN_All;
     GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_HIGH;
- //   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
-				GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
-//		GPIO_InitStructure.Alternate = GPIO_AF14_USB;
+		GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
     HAL_GPIO_Init(GPIOD, &GPIO_InitStructure);
 
 /*
@@ -185,48 +170,6 @@ uint16_t LCD_ReadReg(uint16_t LCD_Reg)
 
 static void LCD_SetCursor( uint16_t Xpos, uint16_t Ypos )
 {
-  
-// 	  #if  ( DISP_ORIENTATION == 90 ) || ( DISP_ORIENTATION == 270 )
-
-// 		uint16_t temp;
-// 		Ypos = ( MAX_Y - 1 ) - Ypos;
-// 		temp = Ypos;
-// 		Ypos = Xpos;
-// 		Xpos = temp; 
-
-// 	#elif  ( DISP_ORIENTATION == 0 ) || ( DISP_ORIENTATION == 180 )
-
-// 		Ypos = ( MAX_Y - 1 ) - Ypos;
-// 			
-// 	#endif
-
-//   switch( LCD_Code )
-//   {
-//      default:		 /* 0x9320 0x9325 0x9328 0x9331 0x5408 0x1505 0x0505 0x7783 0x4531 0x4535 */
-//           LCD_WriteReg(0x0020, Xpos );     
-//           LCD_WriteReg(0x0021, Ypos );     
-// 	      break; 
-
-//      case SSD1298: 	 /* 0x8999 */
-//      case SSD1289:   /* 0x8989 */
-// 	      LCD_WriteReg(0x004e, Xpos );      
-//         LCD_WriteReg(0x004f, Ypos );          
-// 	      break;  
-
-//      case HX8347A: 	 /* 0x0047 */
-//      case HX8347D: 	 /* 0x0047 */
-// 	      LCD_WriteReg(0x02, Xpos>>8 );                                                  
-// 	      LCD_WriteReg(0x03, Xpos );  
-
-// 	      LCD_WriteReg(0x06, Ypos>>8 );                           
-// 	      LCD_WriteReg(0x07, Ypos );    
-// 	
-// 	      break;     
-//      case SSD2119:	 /* 3.5 LCD 0x9919 */
-// 	      break; 
-//   }
-	
-  	uint16_t temp;	
 
 	#if (DISP_ORIENTATION == 0)
 		
@@ -1086,74 +1029,6 @@ void LCD_Clear(uint16_t Color)
 }
 
 /******************************************************************************
-* Function Name  : LCD_BGR2RGB
-* Description    : RRRRRGGGGGGBBBBB convert to BBBBBGGGGGGRRRRR
-* Input          : RGB color
-* Output         : None
-* Return         : RGB color
-* Attention		 :
-*******************************************************************************/
-static uint16_t LCD_BGR2RGB(uint16_t color)
-{
-	uint16_t  r, g, b, rgb;
-	
-	b = ( color>>0 )  & 0x1f;
-	g = ( color>>5 )  & 0x3f;
-	r = ( color>>11 ) & 0x1f;
-	
-	rgb =  (b<<11) + (g<<5) + (r<<0);
-	
-	return( rgb );
-}
-
-/******************************************************************************
-* Function Name  : LCD_GetPoint
-* Description    : Get color of the point
-* Input          : - Xpos: Row Coordinate
-*                  - Ypos: Line Coordinate 
-* Output         : None
-* Return         : Screen Color
-* Attention		 : None
-*******************************************************************************/
-uint16_t LCD_GetPoint(uint16_t Xpos,uint16_t Ypos)
-{
-	uint16_t dummy;
-	
-	LCD_SetCursor(Xpos,Ypos);
-	Clr_Cs;
-	LCD_WriteIndex(0x0022);  
-	
-	switch( LCD_Code )
-	{
-		case ST7781:
-		case LGDP4531:
-		case LGDP4535:
-		case SSD1289:
-		case SSD1298:
-      dummy = LCD_ReadData();
-      dummy = LCD_ReadData(); 
-      Set_Cs;	
- 		  return  dummy;	      
-    case HX8347A:
-	  case HX8347D:
-    {
-      uint8_t red,green,blue;
-      red = LCD_ReadData()>>3;
-      green = LCD_ReadData()>>3; 
-      blue = LCD_ReadData()>>2; 
-      dummy = ( green << 11 ) | (blue << 5 ) | red;
-		}
-      Set_Cs;	
-      return  dummy;
-    default:	/* 0x9320 0x9325 0x9328 0x9331 0x5408 0x1505 0x0505 0x9919 */
-      dummy = LCD_ReadData();
-      dummy = LCD_ReadData(); 
-      Set_Cs;	
-      return  LCD_BGR2RGB( dummy );
-	}
-}
-
-/******************************************************************************
 * Function Name  : LCD_SetPoint
 * Description    : 
 * Input          : - Xpos: Row Coordinate
@@ -1172,102 +1047,6 @@ void LCD_SetPoint(uint16_t Xpos,uint16_t Ypos,uint16_t point)
 	LCD_WriteReg(0x0022,point);
 }
 
-
-
-/******************************************************************************
-* Function Name  : LCD_DrawLine
-* Description    : Bresenham's line algorithm
-* Input          : - x0:
-*                  - y0:
-*       				   - x1:
-*       		       - y1:
-*                  - color:
-* Output         : None
-* Return         : None
-* Attention		 : None
-*******************************************************************************/	 
-void LCD_DrawLine( uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1 , uint16_t color )
-{
-  short dx,dy;
-  short temp;
-
-  if( x0 > x1 )
-  {
-    temp = x1;
-    x1 = x0;
-    x0 = temp;   
-  }
-  if( y0 > y1 )
-  {
-    temp = y1;
-    y1 = y0;
-    y0 = temp;   
-  }
-
-  dx = x1-x0;
-  dy = y1-y0;
-
-  if( dx == 0 )
-  {
-    do
-    { 
-      LCD_SetPoint(x0, y0, color);
-      y0++;
-    }
-    while( y1 >= y0 ); 
-    return; 
-  }
-  if( dy == 0 )
-  {
-    do
-    {
-      LCD_SetPoint(x0, y0, color);
-      x0++;
-    }
-    while( x1 >= x0 ); 
-		return;
-  }
-
-	/* Bresenham's line algorithm  */
-  if( dx > dy )
-  {
-    temp = 2 * dy - dx;
-    while( x0 != x1 )
-    {
-	    LCD_SetPoint(x0,y0,color);
-	    x0++;
-	    if( temp > 0 )
-	    {
-	      y0++;
-	      temp += 2 * dy - 2 * dx; 
-	 	  }
-      else         
-      {
-			  temp += 2 * dy;
-			}       
-    }
-    LCD_SetPoint(x0,y0,color);
-  }  
-  else
-  {
-    temp = 2 * dx - dy;
-    while( y0 != y1 )
-    {
-	 	  LCD_SetPoint(x0,y0,color);     
-      y0++;                 
-      if( temp > 0 )           
-      {
-        x0++;               
-        temp+=2*dy-2*dx; 
-      }
-      else
-			{
-        temp += 2 * dy;
-			}
-    } 
-    LCD_SetPoint(x0,y0,color);
-	}
-} 
 
 /******************************************************************************
 * Function Name  : PutChar
@@ -1291,7 +1070,7 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, char ASCI, uint16_t charColor, uint1
         tmp_char = buffer[i];
         for( j=0; j<8; j++ )
         {
-            if( (tmp_char >> 7 - j) & 0x01 == 0x01 )
+            if(((tmp_char >> (7 - j)) & 0x01) == 0x01 )
             {
                 LCD_SetPoint( Xpos + j, Ypos + i, charColor );
             }
@@ -1317,7 +1096,7 @@ void PutChar( uint16_t Xpos, uint16_t Ypos, char ASCI, uint16_t charColor, uint1
 *******************************************************************************/
 
 void GUI_Text(uint16_t Xpos, uint16_t Ypos, char str[], uint16_t Color, uint16_t bkColor) {
-	str = convert(str);
+	str = alphabet(str);
 	char TempChar;
 	
 	for (int i = 0; i < strlen(str); i++) {
@@ -1539,7 +1318,7 @@ int isValueInAlphabet(char value) {
 		return 157;
 	}  else if (value == alphabet[63][1]) {
 		return 158;
-	}  
+	}
 	
 	else {
 		return 0;
@@ -1550,31 +1329,50 @@ int isLatin(int code) {
 	if (code >= 65 && code <= 122) {
 		return code;
 	}
+	if (code == 32) {
+		return 32;
+	}
 	return 0;
 }
 
-char *convert(char* str) {
+char *alphabet(char* str) {
 	static char codes[100];
-
 	int count = 0;
-
-	for (int i=0; i < strlen(str); i++) {
+	
+	int i = 0;
+	do {
 		int latinCode = isLatin(str[i]);
 		
 		if (latinCode != 0) {
 			codes[count] = latinCode;
 			count++;
-		} else {
-			int code = isValueInAlphabet(str[i]);
+			i+=1;
 			
-			if (code != 0) {
-				codes[count] = 97+code;
+		} else {
+			char *f;
+			f = &str[i];
+			
+			int v = convert(f);
+			if (v != 0) {
+				codes[count] = v;
 				count++;
+				
+				i+=2;
 			}
 		}
+		
+	} while (i < strlen(str));
+	
+	return codes;
+}
+
+int convert(char* str) {
+	int code = isValueInAlphabet(str[1]);
+	if (code != 0) {
+		return 97+code;
 	}
 
-	return codes;
+	return 0;
 }
 
 

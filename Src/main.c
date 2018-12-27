@@ -102,8 +102,24 @@ int main(void)
     LCD_Initializtion();
     LCD_Clear(Yellow);
 	
-	GUI_Text(50, 34, "TEXT", Blue, Yellow);
-	GUI_Text(50, 64, "ТЕКСТ", Red, Yellow);
+	GUI_Text(35, 34, "Это Text на Russian", Blue, Yellow);
+	
+	
+	GUI_Text(35, 64, "This is Текст in English", Blue, Yellow);
+
+	
+	
+	//GUI_Text(50, 34, "АБВГДЕЖЗИЙКЛМНОП", Blue, Yellow);
+	//GUI_Text(50, 64, "РСТУФХЦЧШЩЪЫЬЭЮЯ", Blue, Yellow);
+	
+	//GUI_Text(50, 84, "абвгдежзийклмноп", Blue, Yellow);
+	//GUI_Text(50, 104, "рстуфхчшщъыьэюя", Blue, Yellow);
+	
+	//GUI_Text(50, 134, "ABCDEFGHJKLMNO", Blue, Yellow);
+	//GUI_Text(50, 154, "PQRSTUVWXYZ", Blue, Yellow);
+	
+	//GUI_Text(50, 174, "abcdefghjklmno\0", Blue, Yellow);
+	//GUI_Text(50, 194, "pqrstuvwzyx\0", Blue, Yellow);
 }
 
 /*******************************************************************************

@@ -502,11 +502,6 @@
               <FilePath>..\Src\AsciiLib.c</FilePath>
             </File>
             <File>
-              <FileName>HzLib.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\HzLib.c</FilePath>
-            </File>
-            <File>
               <FileName>LCD.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\LCD.c</FilePath>
